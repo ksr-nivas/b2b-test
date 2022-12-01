@@ -1,0 +1,4 @@
+<div class="timer flex flex-column">
+    <label for="objects" class="font-bold">Number of objects</label>
+    <input name="objects" type="text" #objects pInputText class="w-auto" [value]="numberOfObjects" (keyup)="setNumber(objects.value)" />
+</div>

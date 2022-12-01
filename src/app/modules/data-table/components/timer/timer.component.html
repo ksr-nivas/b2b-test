@@ -1,0 +1,4 @@
+<div class="timer flex flex-column">
+    <label for="timer" class="font-bold">Timer (ms)</label>
+    <input name="timer" type="text" #timer pInputText class="w-auto" [value]="timeInMsec" (keyup)="setTimer(timer.value)" />
+</div>

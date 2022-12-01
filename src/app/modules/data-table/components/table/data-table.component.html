@@ -1,0 +1,47 @@
+<header>
+    <div class="data-table flex justify-content-evenly align-items-center m-2 p-2">
+        <app-timer></app-timer>
+        <app-objects></app-objects>
+        <p-button icon="pi pi-timer" styleClass="p-button-outlined p-button-danger shadow-none" label="Close Socket" (click)="closeWebSocket()" ></p-button>
+    </div>
+</header>
+
+<div class="table">
+    <p-table [value]="dataObjects | slice:dataObjects.length-10" styleClass="w-9 mx-auto" [scrollable]="true" scrollHeight="600px"> 
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Id</th>
+                <th>Int</th>
+                <th>Float</th>
+                <th>Color</th>
+                <th>Child</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-dataObject>
+            <tr>
+                <td>{{dataObject.id}}</td>
+                <td>{{dataObject.int}}</td>
+                <td>{{dataObject.float}}</td>
+                <td><span [ngStyle]="{'background-color': dataObject.color}">{{dataObject.color}}</span></td>
+                <td>
+                    <p-table [value]="[dataObject.child]">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th>Id</th>
+                                <th>Child</th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-child>
+                            <tr>
+                                <td>{{child?.id}}</td>
+                                <td><span [ngStyle]="{'background-color': child.color}">{{child?.color}}</span></td>
+                            </tr>    
+                        </ng-template>
+                    </p-table>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+
+<p-toast position="top-right" key="tr"></p-toast>
